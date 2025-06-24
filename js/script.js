@@ -398,4 +398,16 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Your cart is empty. Redirecting to cart page...');
         window.location.href = 'cart.html';
     }
+
+    // Ensure Google Fonts are loaded for consistent font style across devices
+    (function() {
+        var poppins = document.createElement('link');
+        poppins.rel = 'stylesheet';
+        poppins.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap';
+        document.head.appendChild(poppins);
+        var shadows = document.createElement('link');
+        shadows.rel = 'stylesheet';
+        shadows.href = 'https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap';
+        document.head.appendChild(shadows);
+    })();
 });

@@ -20,6 +20,11 @@
             <a href="index.html"><img src="static/img/logo.jpg" alt="Hooked On You Logo" class="logo-img"></a>
             <span class="shadows-into-light-regular">Hooked On You</span>
         </div>
+        <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="search-bar">
             <form action="search.html" method="GET">
                 <input type="text" name="q" placeholder="Search products..." aria-label="Search">
@@ -41,7 +46,6 @@
         <div class="contact-details">
             <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
             <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
-            <p>UPI ID: hookedonyou@okicici</p>
         </div>
         <div class="contact-form">
             <h3>Send Us a Message</h3>
@@ -68,5 +72,15 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script>
+      // Hamburger menu toggle for mobile
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      menuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', !expanded);
+      });
+    </script>
 </body>
 </html>
