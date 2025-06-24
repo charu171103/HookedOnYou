@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Hooked On You</title>
+    <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="static/img/logo.jpg" alt="Hooked On You Logo" class="logo-img"></a>
+            <span class="shadows-into-light-regular">Hooked On You</span>
+        </div>
+        <div class="search-bar">
+            <form action="search.html" method="GET">
+                <input type="text" name="q" placeholder="Search products..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html" class="active">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <section class="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-summary">
+            <p>Subtotal: ₹<span id="cart-subtotal">0</span></p>
+            <p>Shipping: ₹<span id="cart-shipping">40</span></p>
+            <p class="total">Total: ₹<span id="cart-total">0</span></p>
+            <a href="checkout.html" class="cta-button" id="checkout-button">Proceed to Checkout</a>
+        </div>
+    </section>
+
+    <!-- Shipping and Delivery Information -->
+    <section class="shipping-info">
+        <h2>Shipping & Delivery Information</h2>
+        <div class="shipping-grid">
+            <div class="shipping-card">
+                <h3>🚚 Standard Delivery</h3>
+                <p><strong>Cost:</strong> ₹40</p>
+                <p><strong>Delivery Time:</strong> 3-5 business days</p>
+                <p><strong>Coverage:</strong> All major cities in India</p>
+                <p>Free delivery on orders above ₹500</p>
+            </div>
+            <div class="shipping-card">
+                <h3>⚡ Express Delivery</h3>
+                <p><strong>Cost:</strong> ₹80</p>
+                <p><strong>Delivery Time:</strong> 1-2 business days</p>
+                <p><strong>Coverage:</strong> Metro cities only</p>
+                <p>Available for orders placed before 2 PM</p>
+            </div>
+            <div class="shipping-card">
+                <h3>📦 Order Processing</h3>
+                <p><strong>Processing Time:</strong> 1-2 business days</p>
+                <p><strong>Handmade Items:</strong> May take 3-5 days</p>
+                <p><strong>Custom Orders:</strong> 7-10 business days</p>
+                <p>We'll notify you when your order ships</p>
+            </div>
+            <div class="shipping-card">
+                <h3>📍 Delivery Areas</h3>
+                <p><strong>Free Delivery:</strong> Coimbatore city limits</p>
+                <p><strong>Standard Delivery:</strong> Tamil Nadu, Kerala, Karnataka</p>
+                <p><strong>Express Delivery:</strong> All major metros</p>
+                <p>Contact us for international shipping</p>
+            </div>
+        </div>
+        
+        <div class="delivery-notes">
+            <h3>Important Delivery Notes:</h3>
+            <ul>
+                <li>All items are carefully packaged to ensure safe delivery</li>
+                <li>Delivery attempts will be made during business hours (9 AM - 6 PM)</li>
+                <li>Please provide accurate contact information for delivery updates</li>
+                <li>Signature may be required for orders above ₹1000</li>
+                <li>Returns accepted within 7 days of delivery (unused items only)</li>
+                <li>For any delivery issues, contact us at hookedonyou@gmail.com</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Hooked On You. All rights reserved.</p>
+        <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
+        <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

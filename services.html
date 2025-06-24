@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Hooked On You</title>
+    <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="static/img/logo.jpg" alt="Hooked On You Logo" class="logo-img"></a>
+            <span class="shadows-into-light-regular">Hooked On You</span>
+        </div>
+        <div class="search-bar">
+            <form action="search.html" method="GET">
+                <input type="text" name="q" placeholder="Search products..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <div class="centered-content">
+        <section class="services">
+            <h2>Our Products</h2>
+            <div class="product-category">
+                <h3>Crochet Jackets</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="static/img/j1.jpg" alt="Granny Square">
+                        <h4>Granny Square</h4>
+                        <p>₹1249</p>
+                        <button class="add-to-cart" data-id="6" data-name="Granny Square" data-price="1249">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/j2.jpg" alt="Boho Cardigan">
+                        <h4>Bohemian Crochet Cardigan</h4>
+                        <p>₹1699</p>
+                        <button class="add-to-cart" data-id="7" data-name="Boho Cardigan" data-price="1699">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/j3.jpg" alt="Picnic Cardigan">
+                        <h4>Picnic Crochet Cardigan</h4>
+                        <p>₹1750</p>
+                        <button class="add-to-cart" data-id="8" data-name="Picnic Cardigan" data-price="1750">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/j4.jpg" alt="EvilEye">
+                        <h4>SUGERCANDY Evil Eye Patch</h4>
+                        <p>₹2879</p>
+                        <button class="add-to-cart" data-id="9" data-name="EvilEye" data-price="2879">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/j5.jpg" alt="Floral Front">
+                        <h4>Floral Front Tie Cardigan</h4>
+                        <p>₹2999</p>
+                        <button class="add-to-cart" data-id="10" data-name="Floral Front" data-price="2999">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-category">
+                <h3>Key Chains</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="static/img/kc1.jpg" alt="Flower Key Chain">
+                        <h4>Pookie Duo</h4>
+                        <p>₹419</p>
+                        <button class="add-to-cart" data-id="11" data-name="Flower Key Chain" data-price="419">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/kc2.jpg" alt="Bee My Honey">
+                        <h4>Bee My Honey</h4>
+                        <p>₹389</p>
+                        <button class="add-to-cart" data-id="12" data-name="Bee My Honey" data-price="389">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/kc3.jpg" alt="Twinny">
+                        <h4>Twinny</h4>
+                        <p>₹390</p>
+                        <button class="add-to-cart" data-id="13" data-name="Twinny" data-price="390">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/kc4.jpg" alt="Love Knot">
+                        <h4>Love Knot</h4>
+                        <p>₹120</p>
+                        <button class="add-to-cart" data-id="14" data-name="Love Knot" data-price="120">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/kc5.jpg" alt="MiniMate">
+                        <h4>MiniMate</h4>
+                        <p>₹249</p>
+                        <button class="add-to-cart" data-id="15" data-name="MiniMate" data-price="249">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-category">
+                <h3>Mini Bouquets</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="static/img/b1.jpg" alt="Rainbow Blossom">
+                        <h4>Rainbow Blossom</h4>
+                        <p>₹599</p>
+                        <button class="add-to-cart" data-id="16" data-name="Rainbow Blossom" data-price="599">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/b2.jpg" alt="FernFlora">
+                        <h4>FernFlora</h4>
+                        <p>₹449</p>
+                        <button class="add-to-cart" data-id="17" data-name="FernFlora" data-price="449">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/b3.jpg" alt="SnowBloom">
+                        <h4>SnowBloom</h4>
+                        <p>₹399</p>
+                        <button class="add-to-cart" data-id="18" data-name="SnowBloom" data-price="399">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/b4.jpg" alt="Petite Poms">
+                        <h4>Petite Poms</h4>
+                        <p>₹519</p>
+                        <button class="add-to-cart" data-id="19" data-name="Petite Poms" data-price="519">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/b5.jpg" alt="Purple Twist">
+                        <h4>Purple Twist</h4>
+                        <p>₹609</p>
+                        <button class="add-to-cart" data-id="20" data-name="Purple Twist" data-price="609">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-category">
+                <h3>Raw Materials</h3>
+                <div class="product-grid">
+                    <div class="product-item">
+                        <img src="static/img/rm1-yarnlilac.png" alt="Lilac Cotton Yarn">
+                        <h4>Lilac Cotton Yarn</h4>
+                        <p>₹199</p>
+                        <button class="add-to-cart" data-id="1" data-name="Lilac Cotton Yarn" data-price="150">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/rm2-yarn24.png" alt="24 Color Yarn Bundle">
+                        <h4>24 Color Yarn Bundle</h4>
+                        <p>₹520</p>
+                        <button class="add-to-cart" data-id="2" data-name="24 Color Yarn Bundle" data-price="520">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/rm3-yarnmlticlr.png" alt="Multiolor Yarn">
+                        <h4>Multicolor Yarn</h4>
+                        <p>₹249</p>
+                        <button class="add-to-cart" data-id="3" data-name="Multicolor Yarn" data-price="249">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/rm4-sewingneedle.png" alt="Sewing Needles">
+                        <h4>Sewing Needles</h4>
+                        <p>₹79</p>
+                        <button class="add-to-cart" data-id="4" data-name="Sewing Needles" data-price="79">Add to Cart</button>
+                    </div>
+                    <div class="product-item">
+                        <img src="static/img/rm5-yarnkit.png" alt="Crochet Accessory kit">
+                        <h4>Crochet Accessory kit</h4>
+                        <p>₹799</p>
+                        <button class="add-to-cart" data-id="5" data-name="Crochet Accessory kit" data-price="799">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <a href="cart.html" class="cta-button">View Cart</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Hooked On You. All rights reserved.</p>
+        <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
+        <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
+        <p>Payment: Cash on Delivery or UPI (hookedonyou@okicici)</p>
+        <p>Shipping: 10-12 working days, ₹40 standard rate, free on orders above ₹1000</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

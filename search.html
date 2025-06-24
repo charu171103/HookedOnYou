@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Hooked On You</title>
+    <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="static/img/logo.jpg" alt="Hooked On You Logo" class="logo-img"></a>
+            <span class="shadows-into-light-regular">Hooked On You</span>
+        </div>
+        <div class="search-bar">
+            <form action="search.html" method="GET">
+                <input type="text" name="q" placeholder="Search products..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="search-results">
+        <h2>Search Results</h2>
+        <p>Results for: <span id="query"></span></p>
+        <p>Note: This is a demo page. Search functionality is simulated.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hooked On You. All rights reserved.</p>
+        <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
+        <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+        document.getElementById('query').textContent = query || 'No query';
+        if (query) {
+            gtag('event', 'search', {
+                'event_category': 'Engagement',
+                'event_label': query
+            });
+        }
+    </script>
+</body>
+</html>

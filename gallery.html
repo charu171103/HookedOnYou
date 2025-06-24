@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Hooked On You</title>
+    <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
+    <link rel="stylesheet" href="css/style.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html"><img src="static/img/logo.jpg" alt="Hooked On You Logo" class="logo-img"></a>
+            <span class="shadows-into-light-regular">Hooked On You</span>
+        </div>
+        <div class="search-bar">
+            <form action="search.html" method="GET">
+                <input type="text" name="q" placeholder="Search products..." aria-label="Search">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="cart.html">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+    </nav>
+
+    <div class="centered-content">
+        <section class="gallery">
+            <h2>Our Creations</h2>
+            <div class="gallery-section">
+                <h3>Key Chains</h3>
+                <div class="gallery-grid">
+                    <img src="static/img/kc1.jpg" alt="Flower key chain">
+                    <img src="static/img/kc2.jpg" alt="Bee My Honey">
+                    <img src="static/img/kc3.jpg" alt="Twinny">
+                    <img src="static/img/kc4.jpg" alt="Love Knot">
+                    <img src="static/img/kc5.jpg" alt="MiniMate">
+                </div>
+            </div>
+            <div class="gallery-section">
+                <h3>Crochet Jackets</h3>
+                <div class="gallery-grid">
+                    <img src="static/img/j1.jpg" alt="Granny Square">
+                    <img src="static/img/j2.jpg" alt="Boho cardigan">
+                    <img src="static/img/j3.jpg" alt="Picnic Cardigan">
+                    <img src="static/img/j4.jpg" alt="EvilEye">
+                    <img src="static/img/j5.jpg" alt="Floral Front">
+                </div>
+            </div>
+            <div class="gallery-section">
+                <h3>Mini Bouquets</h3>
+                <div class="gallery-grid">
+                    <img src="static/img/b1.jpg" alt="Rainbow Blossom">
+                    <img src="static/img/b2.jpg" alt="FernFlora">
+                    <img src="static/img/b3.jpg" alt="SnowBloom">
+                    <img src="static/img/b4.jpg" alt="Petite Poms">
+                    <img src="static/img/b5.jpg" alt="Purple Twist">
+                </div>
+            </div>
+            <div class="gallery-section">
+                <h3>Raw Materials</h3>
+                <div class="gallery-grid">
+                    <img src="static/img/rm1-yarnlilac.png" alt="Lilac Yarn skeins">
+                    <img src="static/img/rm2-yarn24.png" alt="24 Color Yarn Bundle">
+                    <img src="static/img/rm3-yarnmlticlr.png" alt="Multicolor Yarn">
+                    <img src="static/img/rm4-sewingneedle.png" alt="Sewing Needles">
+                    <img src="static/img/rm5-yarnkit.png" alt="Crochet Accessory kit">
+                </div>
+            </div>
+
+            <a href="services.html" class="cta-button">Shop Now</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 Hooked On You. All rights reserved.</p>
+        <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
+        <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
