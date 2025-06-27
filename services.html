@@ -6,6 +6,26 @@
     <title>Services - Hooked On You</title>
     <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .pdf-catalog-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .pdf-catalog-btn:hover {
+            background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+            transform: scale(1.05);
+        }
+    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1MWJ835KKH"></script>
     <script>
@@ -15,6 +35,7 @@
 
       gtag('config', 'G-1MWJ835KKH');
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -187,6 +208,7 @@
                 </div>
             </div>
             <a href="cart.html" class="cta-button">View Cart</a>
+            <button class="pdf-catalog-btn" onclick="downloadCatalogPDF()">📄 Download Product Catalog PDF</button>
         </section>
     </div>
 
@@ -194,8 +216,6 @@
         <p>© 2025 Hooked On You. All rights reserved.</p>
         <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
         <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
-        <p>Payment: Cash on Delivery or UPI (hookedonyou@okicici)</p>
-        <p>Shipping: 10-12 working days, ₹40 standard rate, free on orders above ₹1000</p>
     </footer>
 
     <script src="js/script.js"></script>
@@ -208,6 +228,284 @@
         const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
         menuBtn.setAttribute('aria-expanded', !expanded);
       });
+
+      // Random Popup Notifications for Services Page
+      const popupMessages = [
+        {
+          type: 'offer',
+          title: '🎉 Jacket Sale!',
+          message: 'All crochet jackets 15% off! Limited time only!',
+          color: '#e75480',
+          icon: '🧥'
+        },
+        {
+          type: 'stock',
+          title: '⚡ Hot Seller!',
+          message: 'Bohemian Cardigan - Only 2 left! Grab yours now!',
+          color: '#ff6b6b',
+          icon: '🔥'
+        },
+        {
+          type: 'offer',
+          title: '🌸 Bouquet Special!',
+          message: 'Buy any 2 bouquets, get 1 free! Perfect gifts!',
+          color: '#a8e6cf',
+          icon: '🌺'
+        },
+        {
+          type: 'stock',
+          title: '🔑 Key Chain Alert!',
+          message: 'Pookie Duo key chains - Almost sold out!',
+          color: '#ffd93d',
+          icon: '⚡'
+        },
+        {
+          type: 'catchy',
+          title: '💝 Handcrafted Love!',
+          message: 'Each piece is unique, just like you! Shop now!',
+          color: '#764ba2',
+          icon: '❤️'
+        },
+        {
+          type: 'offer',
+          title: '🎯 Bundle Deal!',
+          message: 'Get yarn kit + needles at 20% off!',
+          color: '#4ecdc4',
+          icon: '🧶'
+        },
+        {
+          type: 'stock',
+          title: '🌿 Eco Yarn!',
+          message: 'Organic cotton yarn - Limited stock!',
+          color: '#1dd1a1',
+          icon: '🌱'
+        },
+        {
+          type: 'catchy',
+          title: '✨ Crochet Dreams!',
+          message: 'Turn your creativity into reality! Start crafting!',
+          color: '#feca57',
+          icon: '✨'
+        }
+      ];
+
+      function createPopup() {
+        // Don't show popup if user has seen one recently
+        if (localStorage.getItem('lastPopupTime')) {
+          const lastTime = parseInt(localStorage.getItem('lastPopupTime'));
+          if (Date.now() - lastTime < 300000) { // 5 minutes
+            return;
+          }
+        }
+
+        const randomMessage = popupMessages[Math.floor(Math.random() * popupMessages.length)];
+        
+        const popup = document.createElement('div');
+        popup.className = 'popup-notification';
+        popup.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: linear-gradient(135deg, ${randomMessage.color}15, ${randomMessage.color}25);
+          border: 2px solid ${randomMessage.color};
+          border-radius: 15px;
+          padding: 20px;
+          max-width: 300px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+          z-index: 10000;
+          transform: translateX(400px);
+          transition: transform 0.5s ease;
+          backdrop-filter: blur(10px);
+          font-family: 'Inter', Arial, sans-serif;
+        `;
+
+        popup.innerHTML = `
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <span style="font-size: 24px;">${randomMessage.icon}</span>
+            <h3 style="margin: 0; color: ${randomMessage.color}; font-size: 16px; font-weight: bold;">${randomMessage.title}</h3>
+            <button onclick="this.parentElement.parentElement.remove()" style="
+              background: none;
+              border: none;
+              color: #666;
+              font-size: 18px;
+              cursor: pointer;
+              margin-left: auto;
+              padding: 0;
+              width: 20px;
+              height: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              transition: background 0.3s;
+            " onmouseover="this.style.background='rgba(0,0,0,0.1)'" onmouseout="this.style.background='none'">×</button>
+          </div>
+          <p style="margin: 0; color: #333; font-size: 14px; line-height: 1.4;">${randomMessage.message}</p>
+          <button onclick="this.parentElement.remove()" style="
+            background: linear-gradient(135deg, ${randomMessage.color}, ${randomMessage.color}dd);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s;
+          " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Add to Cart</button>
+        `;
+
+        document.body.appendChild(popup);
+
+        // Animate in
+        setTimeout(() => {
+          popup.style.transform = 'translateX(0)';
+        }, 100);
+
+        // Auto remove after 8 seconds
+        setTimeout(() => {
+          if (popup.parentElement) {
+            popup.style.transform = 'translateX(400px)';
+            setTimeout(() => {
+              if (popup.parentElement) {
+                popup.remove();
+              }
+            }, 500);
+          }
+        }, 8000);
+
+        // Store popup time
+        localStorage.setItem('lastPopupTime', Date.now().toString());
+
+        // Track popup view
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'popup_view', {
+            'event_category': 'Engagement',
+            'event_label': randomMessage.type,
+            'value': 1
+          });
+        }
+      }
+
+      // Show popup after 5 seconds on services page
+      setTimeout(createPopup, 5000);
+
+      // Show popup when user adds item to cart
+      document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('add-to-cart')) {
+          setTimeout(createPopup, 2000); // Show popup 2 seconds after adding to cart
+        }
+      });
+
+      function downloadCatalogPDF() {
+        // Product data
+        const products = {
+          'Crochet Jackets': [
+            { name: 'Granny Square', price: '₹1249' },
+            { name: 'Bohemian Crochet Cardigan', price: '₹1699' },
+            { name: 'Picnic Crochet Cardigan', price: '₹1750' },
+            { name: 'SUGERCANDY Evil Eye Patch', price: '₹2879' },
+            { name: 'Floral Front Tie Cardigan', price: '₹2999' }
+          ],
+          'Key Chains': [
+            { name: 'Pookie Duo', price: '₹419' },
+            { name: 'Bee My Honey', price: '₹389' },
+            { name: 'Twinny', price: '₹390' },
+            { name: 'Love Knot', price: '₹120' },
+            { name: 'MiniMate', price: '₹249' }
+          ],
+          'Mini Bouquets': [
+            { name: 'Rainbow Blossom', price: '₹599' },
+            { name: 'FernFlora', price: '₹449' },
+            { name: 'SnowBloom', price: '₹399' },
+            { name: 'Petite Poms', price: '₹519' },
+            { name: 'Purple Twist', price: '₹609' }
+          ],
+          'Raw Materials': [
+            { name: 'Lilac Cotton Yarn', price: '₹199' },
+            { name: '24 Color Yarn Bundle', price: '₹520' },
+            { name: 'Multicolor Yarn', price: '₹249' },
+            { name: 'Sewing Needles', price: '₹79' },
+            { name: 'Crochet Accessory kit', price: '₹799' }
+          ]
+        };
+
+        // Create PDF
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Add header
+        doc.setFontSize(28);
+        doc.setTextColor(231, 84, 128); // Pink color
+        doc.text('Hooked On You', 105, 20, { align: 'center' });
+        
+        doc.setFontSize(16);
+        doc.setTextColor(100, 100, 100);
+        doc.text('Product Catalog', 105, 35, { align: 'center' });
+
+        // Add description
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text('Discover our magical collection of handmade crochet treasures!', 105, 45, { align: 'center' });
+
+        let yPosition = 60;
+        let pageNumber = 1;
+
+        // Add each category
+        Object.keys(products).forEach((category, categoryIndex) => {
+          // Check if we need a new page
+          if (yPosition > 250) {
+            doc.addPage();
+            yPosition = 20;
+            pageNumber++;
+          }
+
+          // Category header
+          doc.setFontSize(14);
+          doc.setTextColor(231, 84, 128);
+          doc.text(category, 20, yPosition);
+          yPosition += 10;
+
+          // Products in category
+          doc.setFontSize(10);
+          doc.setTextColor(0, 0, 0);
+          products[category].forEach((product, productIndex) => {
+            if (yPosition > 250) {
+              doc.addPage();
+              yPosition = 20;
+              pageNumber++;
+            }
+
+            doc.text(`${productIndex + 1}. ${product.name}`, 25, yPosition);
+            doc.text(product.price, 150, yPosition);
+            yPosition += 8;
+          });
+
+          yPosition += 10; // Space between categories
+        });
+
+        // Add footer
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        doc.text('Thank you for choosing Hooked On You!', 105, 280, { align: 'center' });
+        doc.text('Email: hookedonyou@gmail.com | Address: J 5/6, Sugar Apartment, Coimbatore', 105, 285, { align: 'center' });
+
+        // Download PDF
+        const fileName = `HookedOnYou_Catalog_${Date.now()}.pdf`;
+        doc.save(fileName);
+
+        // Track PDF download
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'pdf_download', {
+            'event_category': 'Engagement',
+            'event_label': 'Product Catalog PDF',
+            'value': 1
+          });
+        }
+
+        // Show success message
+        alert('Product catalog PDF downloaded successfully!');
+      }
     </script>
 </body>
 </html>

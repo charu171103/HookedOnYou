@@ -6,6 +6,223 @@
     <title>Checkout - Hooked On You</title>
     <link rel="icon" type="image/jpeg" href="static/img/logo.jpg">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .upi-pay-button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .upi-pay-button:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .upi-pay-button:active {
+            transform: translateY(0);
+        }
+
+        .upi-pay-button.show {
+            display: inline-block !important;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .payment-method-container {
+            margin: 15px 0;
+            padding: 15px;
+            border: 2px solid #f0f0f0;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        .payment-method-container.selected {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.05);
+        }
+
+        /* Celebration Animation Styles */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #f00;
+            animation: confetti-fall 3s linear infinite;
+            z-index: 10000;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #0f0;
+        }
+
+        .confetti:nth-child(even) {
+            background: #00f;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #ff0;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #f0f;
+        }
+
+        .confetti:nth-child(5n) {
+            background: #0ff;
+        }
+
+        .confetti:nth-child(6n) {
+            background: #ff00ff;
+        }
+
+        .confetti:nth-child(7n) {
+            background: #00ffff;
+        }
+
+        .confetti:nth-child(8n) {
+            background: #ff00ff;
+        }
+
+        .confetti:nth-child(9n) {
+            background: #00ffff;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .celebration-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .celebration-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .celebration-content {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            transform: scale(0.5);
+            transition: transform 0.5s ease;
+        }
+
+        .celebration-overlay.show .celebration-content {
+            transform: scale(1);
+        }
+
+        .celebration-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .celebration-title {
+            font-size: 32px;
+            color: #e75480;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .celebration-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .celebration-button {
+            background: linear-gradient(135deg, #e75480, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .celebration-button:hover {
+            transform: scale(1.05);
+        }
+
+        .celebration-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .celebration-button.home-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .celebration-button.shop-btn {
+            background: linear-gradient(135deg, #e75480, #764ba2);
+        }
+
+        .pdf-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            margin-top: 10px;
+        }
+
+        .pdf-btn:hover {
+            background: linear-gradient(135deg, #ee5a24, #ff6b6b);
+        }
+    </style>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1MWJ835KKH"></script>
     <script>
@@ -55,27 +272,39 @@
         
         <div class="checkout-form">
             <h3>Shipping Details</h3>
-            <div>
-                <label for="name">Name: <span class="required">*</span></label>
-                <input type="text" id="name" placeholder="Your Name" aria-label="Name" required>
-            </div>
-            <div>
-                <label for="address">Address: <span class="required">*</span></label>
-                <input type="text" id="address" placeholder="Your Address" aria-label="Address" required>
-            </div>
-            <div>
-                <label for="phone">Phone: <span class="required">*</span></label>
-                <input type="tel" id="phone" placeholder="Your Phone" aria-label="Phone" required>
-            </div>
-            <h3>Payment Method</h3>
-            <div>
-                <input type="radio" id="cod" name="payment" value="Cash on Delivery" checked>
-                <label for="cod">Cash on Delivery</label>
-            </div>
-            <div>
-                <input type="radio" id="upi" name="payment" value="UPI">
-                <label for="upi">UPI (hookedonyou@okicici)</label>
-            </div>
+            <form id="checkout-form" onsubmit="event.preventDefault(); placeOrder();">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Shipping Address *</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+                
+                <h3>Payment Method</h3>
+                <div class="payment-methods">
+                    <div class="payment-method-container">
+                        <input type="radio" id="cod" name="payment" value="cod" required>
+                        <label for="cod">Cash on Delivery</label>
+                    </div>
+                    <div class="payment-method-container">
+                        <input type="radio" id="upi" name="payment" value="upi" required>
+                        <label for="upi">UPI Payment (hookedonyou@okicici)</label>
+                        <button type="button" class="upi-pay-button" style="display: none;">Pay via UPI</button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="cta-button">Place Order</button>
+            </form>
         </div>
         <div class="cart-summary">
             <p>Subtotal: ₹<span id="cart-subtotal">0</span></p>
@@ -83,18 +312,32 @@
             <p class="total">Total: ₹<span id="cart-total">0</span></p>
             <div class="checkout-buttons">
                 <a href="services.html" class="cta-button secondary">Continue Shopping</a>
-                <button class="cta-button" id="place-order-btn">Place Order</button>
+                <button class="cta-button pdf-btn" onclick="downloadOrderPDF()">📄 Download Order PDF</button>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2025 Hooked On You. All rights reserved.</p>
+        <p>&copy; 2025 Hooked On You. All rights reserved.</p>
         <p>Email: <a href="mailto:hookedonyou@gmail.com">hookedonyou@gmail.com</a></p>
         <p>Address: J 5/6, Sugar Apartment, Coimbatore</p>
         <p>Payment: Cash on Delivery or UPI (hookedonyou@okicici)</p>
         <p>Shipping: 10-12 working days, ₹40 standard rate, free on orders above ₹1000</p>
     </footer>
+
+    <!-- Celebration Overlay -->
+    <div class="celebration-overlay" id="celebrationOverlay">
+        <div class="celebration-content">
+            <div class="celebration-icon">🎉</div>
+            <h2 class="celebration-title">Order Placed Successfully!</h2>
+            <p class="celebration-message">Thank you for your purchase! Your crochet treasures are on their way to you.</p>
+            <div class="celebration-buttons">
+                <button class="celebration-button home-btn" onclick="goHome()">🏠 Go Home</button>
+                <button class="celebration-button shop-btn" onclick="continueShopping()">🛍️ Continue Shopping</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
     <script>
@@ -106,6 +349,294 @@
         const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
         menuBtn.setAttribute('aria-expanded', !expanded);
       });
+
+      // UPI Payment Button Functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const upiRadio = document.getElementById('upi');
+        const upiButton = document.querySelector('.upi-pay-button');
+
+        upiRadio.addEventListener('change', function() {
+          if (this.checked) {
+            upiButton.classList.add('show');
+          } else {
+            upiButton.classList.remove('show');
+          }
+        });
+
+        upiButton.addEventListener('click', function() {
+          // Calculate total
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+          const shipping = subtotal > 1000 ? 0 : 40;
+          const total = subtotal + shipping;
+          
+          // Try to open UPI app
+          const upiUrl = `upi://pay?pa=hookedonyou@okicici&pn=Hooked%20On%20You&am=${total}&cu=INR&tn=Crochet%20Order`;
+          
+          // For mobile devices
+          if (/Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            window.location.href = upiUrl;
+          } else {
+            // For desktop, show instructions
+            alert('Unable to open UPI app automatically. Please manually open your UPI app and send ₹' + total + ' to hookedonyou@okicici');
+          }
+
+          // Track UPI button click
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'upi_button_click', {
+              'event_category': 'Payment',
+              'event_label': 'UPI Payment',
+              'value': 1
+            });
+          }
+        });
+      });
+
+      // Celebration Animation Functions
+      function createConfetti() {
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8', '#f7dc6f'];
+        
+        for (let i = 0; i < 150; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 3 + 's';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.width = (Math.random() * 10 + 5) + 'px';
+            confetti.style.height = (Math.random() * 10 + 5) + 'px';
+            
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                if (confetti.parentElement) {
+                    confetti.remove();
+                }
+            }, 5000);
+        }
+      }
+
+      function showCelebration() {
+        const overlay = document.getElementById('celebrationOverlay');
+        overlay.classList.add('show');
+        
+        // Create confetti
+        createConfetti();
+        
+        // Play celebration sound (optional)
+        // You can add audio here if needed
+        
+        // Track celebration event
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'order_celebration', {
+                'event_category': 'Purchase',
+                'event_label': 'Order Success',
+                'value': 1
+            });
+        }
+      }
+
+      function closeCelebration() {
+        const overlay = document.getElementById('celebrationOverlay');
+        overlay.classList.remove('show');
+        
+        // Redirect to home page after a short delay
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 300);
+      }
+
+      function goHome() {
+        const overlay = document.getElementById('celebrationOverlay');
+        overlay.classList.remove('show');
+        
+        // Track home button click
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'celebration_home_click', {
+                'event_category': 'Navigation',
+                'event_label': 'Home from Celebration',
+                'value': 1
+            });
+        }
+        
+        // Redirect to home page after a short delay
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 300);
+      }
+
+      function continueShopping() {
+        const overlay = document.getElementById('celebrationOverlay');
+        overlay.classList.remove('show');
+        
+        // Track continue shopping button click
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'celebration_shop_click', {
+                'event_category': 'Navigation',
+                'event_label': 'Continue Shopping from Celebration',
+                'value': 1
+            });
+        }
+        
+        // Redirect to services page after a short delay
+        setTimeout(() => {
+            window.location.href = 'services.html';
+        }, 300);
+      }
+
+      function placeOrder() {
+        // Validate form
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const paymentMethod = document.querySelector('input[name="payment"]:checked');
+
+        if (!name || !email || !phone || !address || !paymentMethod) {
+            alert('Please fill in all fields and select a payment method.');
+            return;
+        }
+
+        // Show loading state
+        const orderButton = document.querySelector('button[type="submit"]');
+        const originalText = orderButton.textContent;
+        orderButton.textContent = 'Processing...';
+        orderButton.disabled = true;
+
+        // Simulate order processing
+        setTimeout(() => {
+            // Show celebration animation
+            showCelebration();
+            
+            // Track successful order
+            if (typeof gtag !== 'undefined') {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                const shipping = subtotal > 1000 ? 0 : 40;
+                const total = subtotal + shipping;
+                
+                gtag('event', 'purchase', {
+                    'transaction_id': 'ORDER_' + Date.now(),
+                    'value': total,
+                    'currency': 'INR',
+                    'items': cart.map(item => ({
+                        'item_id': item.id,
+                        'item_name': item.name,
+                        'price': item.price,
+                        'quantity': item.quantity
+                    }))
+                });
+            }
+        }, 2000);
+      }
+
+      function downloadOrderPDF() {
+        // Get cart items
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        const shipping = subtotal > 1000 ? 0 : 40;
+        const total = subtotal + shipping;
+
+        // Get customer details
+        const name = document.getElementById('name').value || 'Customer';
+        const email = document.getElementById('email').value || 'customer@email.com';
+        const phone = document.getElementById('phone').value || 'Phone Number';
+        const address = document.getElementById('address').value || 'Address';
+
+        // Check if jsPDF is available
+        if (typeof window.jspdf === 'undefined') {
+            alert('PDF generation library is not loaded. Please refresh the page and try again.');
+            return;
+        }
+
+        try {
+            // Create PDF content
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add header
+            doc.setFontSize(24);
+            doc.setTextColor(231, 84, 128); // Pink color
+            doc.text('Hooked On You', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(14);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Order Details', 105, 35, { align: 'center' });
+
+            // Add customer information
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Customer Information:', 20, 50);
+            doc.setFontSize(10);
+            doc.text(`Name: ${name}`, 20, 60);
+            doc.text(`Email: ${email}`, 20, 70);
+            doc.text(`Phone: ${phone}`, 20, 80);
+            doc.text(`Address: ${address}`, 20, 90);
+
+            // Add order items
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Order Items:', 20, 110);
+
+            let yPosition = 120;
+            cart.forEach((item, index) => {
+              if (yPosition > 250) {
+                doc.addPage();
+                yPosition = 20;
+              }
+              
+              doc.setFontSize(10);
+              doc.text(`${index + 1}. ${item.name}`, 20, yPosition);
+              doc.text(`   Quantity: ${item.quantity}`, 30, yPosition + 5);
+              doc.text(`   Price: ₹${item.price}`, 30, yPosition + 10);
+              doc.text(`   Total: ₹${item.price * item.quantity}`, 30, yPosition + 15);
+              
+              yPosition += 25;
+            });
+
+            // Add order summary
+            if (yPosition > 200) {
+              doc.addPage();
+              yPosition = 20;
+            }
+
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Order Summary:', 20, yPosition);
+            doc.setFontSize(10);
+            doc.text(`Subtotal: ₹${subtotal}`, 20, yPosition + 15);
+            doc.text(`Shipping: ₹${shipping}`, 20, yPosition + 25);
+            doc.setFontSize(12);
+            doc.setTextColor(231, 84, 128);
+            doc.text(`Total: ₹${total}`, 20, yPosition + 35);
+
+            // Add footer
+            doc.setFontSize(8);
+            doc.setTextColor(100, 100, 100);
+            doc.text('Thank you for shopping with Hooked On You!', 105, 280, { align: 'center' });
+            doc.text('Email: hookedonyou@gmail.com | Address: J 5/6, Sugar Apartment, Coimbatore', 105, 285, { align: 'center' });
+
+            // Download PDF
+            const fileName = `HookedOnYou_Order_${Date.now()}.pdf`;
+            doc.save(fileName);
+
+            // Track PDF download
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'pdf_download', {
+                'event_category': 'Engagement',
+                'event_label': 'Order PDF',
+                'value': 1
+              });
+            }
+
+            // Show success message
+            alert('PDF downloaded successfully!');
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            alert('Error generating PDF. Please try again.');
+        }
+      }
     </script>
 </body>
 </html>
